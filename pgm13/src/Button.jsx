@@ -6,7 +6,7 @@ export default function Button({ label, variant }) {
 
   let buttonStyle = {
     padding: "12px 20px",
-    width: "160px",        // 🔥 same width for all buttons
+    width: "160px",        // same width for all buttons
     textAlign: "center",
     borderRadius: "6px",
     border: "none",
