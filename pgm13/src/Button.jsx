@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-export default function Button({ label, variant }) {
+export default function Button({ label, variant, onClick }) {
   const [hover, setHover] = useState(false);
   const [pressed, setPressed] = useState(false);
 
   let buttonStyle = {
     padding: "12px 20px",
-    width: "160px",        // same width for all buttons
+    width: "160px", // same width for all buttons
     textAlign: "center",
     borderRadius: "6px",
     border: "none",
@@ -33,6 +33,12 @@ export default function Button({ label, variant }) {
     buttonStyle.backgroundColor = hover ? "#a71d2a" : "#b21f2d";
   }
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick(label);  // Pass the label to the parent component when clicked
+    }
+  };
+
   return (
     <button
       style={buttonStyle}
@@ -40,6 +46,7 @@ export default function Button({ label, variant }) {
       onMouseLeave={() => { setHover(false); setPressed(false); }}
       onMouseDown={() => setPressed(true)}
       onMouseUp={() => setPressed(false)}
+      onClick={handleClick} // Trigger the click handler
     >
       {label}
     </button>
