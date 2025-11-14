@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 
 export default function App() {
+  const [message, setMessage] = useState("");
+
+  const handleButtonClick = (label) => {
+    // Display message based on the clicked button label
+    switch (label) {
+      case "Start":
+        setMessage("Started the process!");
+        break;
+      case "Stop":
+        setMessage("Process stopped.");
+        break;
+      case "Reset":
+        setMessage("Resetting the process.");
+        break;
+      case "Delete":
+        setMessage("Item deleted.");
+        break;
+      default:
+        setMessage("");
+    }
+  };
+
   return (
     <div
       style={{
@@ -17,10 +39,12 @@ export default function App() {
     >
       <h2>Reusable Buttons Demo</h2>
 
-      <Button label="Start" variant="start" />
-      <Button label="Stop" variant="stop" />
-      <Button label="Reset" variant="reset" />
-      <Button label="Delete" variant="delete" />
+      <Button label="Start" variant="start" onClick={handleButtonClick} />
+      <Button label="Stop" variant="stop" onClick={handleButtonClick} />
+      <Button label="Reset" variant="reset" onClick={handleButtonClick} />
+      <Button label="Delete" variant="delete" onClick={handleButtonClick} />
+
+      {message && <p>{message}</p>} {/* Display the message */}
     </div>
   );
 }
